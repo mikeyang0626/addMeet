@@ -1,3 +1,4 @@
+import { AngularFireAuth } from 'angularfire2/auth';
 import { Component } from '@angular/core';
 import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
@@ -9,12 +10,16 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./nav.component.css']
 })
 export class NavComponent {
+  user$: Observable<firebase.User>;
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches)
     );
     
-  constructor(private breakpointObserver: BreakpointObserver) {}
+  constructor(private breakpointObserver: BreakpointObserver, private afAuth: AngularFireAuth) {
+    this.user$ = this.afAuth.authState;
+    
+  }
   
   }

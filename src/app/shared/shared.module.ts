@@ -1,3 +1,6 @@
+import { environment } from './../../environments/environment';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
@@ -5,6 +8,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSidenavModule } from '@angular/material';
 import { MatButtonModule, MatCheckboxModule } from '@angular/material';
 import { RouterModule } from '@angular/router';
+import { AngularFireModule } from 'angularfire2';
+
 
 @NgModule({
   imports: [
@@ -14,7 +19,9 @@ import { RouterModule } from '@angular/router';
     MatSidenavModule,
     MatButtonModule, 
     MatCheckboxModule,
-    RouterModule
+    RouterModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule,
     
   ],
   exports: [
@@ -23,7 +30,9 @@ import { RouterModule } from '@angular/router';
     BrowserAnimationsModule,
     MatButtonModule, MatCheckboxModule,
     MatSidenavModule,
-    RouterModule
+    RouterModule,
+    AngularFireAuthModule
+
   ],
   declarations: [
 
