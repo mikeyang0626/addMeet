@@ -12,6 +12,7 @@
       <a mat-list-item routerLink="/about" (click)="drawer.toggle()" >About</a>
       <a mat-list-item routerLink="/contact" (click)="drawer.toggle()" >Contact</a>
       <a mat-list-item routerLink="/login" (click)="drawer.toggle()" >Login</a>
+      <a mat-list-item routerLink="/my/meetings" (click)="drawer.toggle()" >My Meetings</a>
       <a mat-list-item routerLink="/admin/meetings" (click)="drawer.toggle()" >Admin Meetings</a>
       
     </mat-nav-list>
@@ -26,8 +27,10 @@
         >
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span *ngIf="user$ | async">Hi, {{ user$.uid }} </span>
-      
+      <span *ngIf="user$ | async as user">Hi, {{ user.displayName }} </span>
+      <button mat-button (click)="logout()" >
+        Logout
+      </button>
     </mat-toolbar>
     <router-outlet></router-outlet>
   </mat-sidenav-content>

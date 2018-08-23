@@ -1,8 +1,10 @@
+import { AuthService } from './../shared/services/auth.service';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Component } from '@angular/core';
 import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-nav',
@@ -17,9 +19,12 @@ export class NavComponent {
       map(result => result.matches)
     );
     
-  constructor(private breakpointObserver: BreakpointObserver, private afAuth: AngularFireAuth) {
-    this.user$ = this.afAuth.authState;
+  constructor(private breakpointObserver: BreakpointObserver, public auth: AuthService) {
+    this.user$ = auth.afAuth.authState;
     
   }
-  
+  logout(){
+    this.auth.logout();
   }
+  
+}
