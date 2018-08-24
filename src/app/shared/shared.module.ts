@@ -7,6 +7,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSidenavModule } from '@angular/material';
 import { MatButtonModule, MatCheckboxModule } from '@angular/material';
+import { MatMenuModule } from '@angular/material/menu';
 import { RouterModule } from '@angular/router';
 import { AngularFireModule } from 'angularfire2';
 
@@ -22,6 +23,7 @@ import { AngularFireModule } from 'angularfire2';
     RouterModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
+    MatMenuModule
     
   ],
   exports: [
