@@ -19,7 +19,7 @@
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar color="primary">
-        
+         
       <button
         type="button"
         aria-label="Toggle sidenav"
@@ -28,10 +28,22 @@
         >
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span *ngIf="appUser">Hi, {{ appUser.name }} </span>
-      <button mat-button (click)="logout()" >
-        Logout
-      </button>
+      <ng-template #anoymousUser>
+          <button  mat-button [matMenuTriggerFor]="menu">Hi, guest. </button>
+          <mat-menu #menu="matMenu">
+            <a mat-menu-item routerLink="/login" >Login</a>
+            
+          </mat-menu> 
+      </ng-template>
+     
+      <button *ngIf="appUser; else anoymousUser" mat-button [matMenuTriggerFor]="menu">Hi, {{ appUser.name }} </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="logout()">Logout</button>
+          
+        </mat-menu> 
+      
+        
+      
     </mat-toolbar>
     <router-outlet></router-outlet>
   </mat-sidenav-content>
